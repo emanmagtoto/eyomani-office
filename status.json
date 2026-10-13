@@ -10,7 +10,7 @@
       "name": "Researcher",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-13T00:10:43+00:00"
+      "updated": "2026-10-13T22:07:18+00:00"
     },
     {
       "name": "Media Specialist",
@@ -86,18 +86,6 @@
     }
   ],
   "log": [
-    {
-      "time": "2026-10-12T13:06:05+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-12T13:06:29+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
     {
       "time": "2026-10-12T13:12:42+00:00",
       "name": "Videographer",
@@ -383,6 +371,18 @@
     {
       "time": "2026-10-13T14:12:10+00:00",
       "name": "Supervisor",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-13T22:06:47+00:00",
+      "name": "Researcher",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-13T22:07:18+00:00",
+      "name": "Researcher",
       "status": "idle",
       "task": "Idle / in the lounge"
     }
