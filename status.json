@@ -44,9 +44,9 @@
     },
     {
       "name": "Finance",
-      "status": "idle",
-      "task": "Idle / in the lounge",
-      "updated": "2026-10-12T07:56:09+00:00"
+      "status": "working",
+      "task": "Working on a project",
+      "updated": "2026-10-13T10:06:03+00:00"
     },
     {
       "name": "Personal Writer",
@@ -86,18 +86,6 @@
     }
   ],
   "log": [
-    {
-      "time": "2026-10-12T12:56:10+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-12T12:56:44+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
     {
       "time": "2026-10-12T12:57:17+00:00",
       "name": "Videographer",
@@ -383,6 +371,18 @@
     {
       "time": "2026-10-13T09:42:10+00:00",
       "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-13T10:04:00+00:00",
+      "name": "Finance",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-13T10:06:03+00:00",
+      "name": "Finance",
       "status": "idle",
       "task": "Idle / in the lounge"
     }
