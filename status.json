@@ -4,7 +4,7 @@
       "name": "Supervisor",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-12T15:08:29+00:00"
+      "updated": "2026-10-13T14:12:10+00:00"
     },
     {
       "name": "Researcher",
@@ -86,12 +86,6 @@
     }
   ],
   "log": [
-    {
-      "time": "2026-10-12T12:57:17+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
     {
       "time": "2026-10-12T13:06:05+00:00",
       "name": "Videographer",
@@ -383,6 +377,12 @@
     {
       "time": "2026-10-13T10:06:03+00:00",
       "name": "Finance",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-13T14:12:10+00:00",
+      "name": "Supervisor",
       "status": "idle",
       "task": "Idle / in the lounge"
     }
