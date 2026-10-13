@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>EYOMANI STUDIO — Floor 1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#e9e7e3;font-family:Helvetica,Arial,sans-serif}
+#hdr{position:fixed;top:0;left:0;right:0;background:#0b0b0b;color:#d4af37;padding:10px 18px;font-weight:700;letter-spacing:3px;font-size:18px;border-bottom:2px solid #d4af37;z-index:5}
+#log{position:fixed;right:12px;top:54px;width:330px;background:rgba(10,10,10,.88);color:#eee;border:1px solid #d4af37;border-radius:6px;font-size:12px;z-index:5}
+#log h3{margin:0;padding:8px 10px;color:#d4af37;font-size:13px;cursor:pointer;letter-spacing:2px}
+#log ul{list-style:none;margin:0;padding:0 10px 8px}#log li{padding:3px 0;border-top:1px solid #333}
+#floors{position:fixed;left:12px;top:54px;z-index:5;display:flex;gap:6px}#floors button{background:#0b0b0b;color:#d4af37;border:1px solid #d4af37;border-radius:4px;padding:6px 12px;font-weight:700;letter-spacing:1px;cursor:pointer}#floors button.on{background:#d4af37;color:#0b0b0b}
+#docs{position:fixed;left:12px;bottom:14px;width:300px;max-height:45vh;overflow:auto;background:rgba(10,10,10,.92);color:#eee;border:1px solid #d4af37;border-radius:6px;padding:10px 12px;z-index:6;font-size:13px}#docs h4{margin:0 24px 8px 0;color:#d4af37;letter-spacing:1px}#docs ul{margin:0;padding-left:16px}#docs li{padding:2px 0;word-break:break-word}#docs .none{margin:0;color:#aaa}#docs .warn{background:#5a3a00;border:1px solid #ffb020;color:#ffd27a;padding:6px;border-radius:4px;margin-bottom:8px}#docsx{position:absolute;top:6px;right:6px;background:none;border:0;color:#d4af37;font-size:18px;cursor:pointer;padding:4px 8px}
+#log.c ul{display:none}#log li b{color:#d4af37}
+@media (max-width:760px){#hdr{font-size:14px;letter-spacing:2px}#floors{left:0;right:0;justify-content:center;top:44px}#floors button{padding:9px 14px}#docs{left:10px;right:10px;width:auto;top:92px;bottom:auto;max-height:40vh}#log{top:auto;bottom:10px;left:10px;right:10px;width:auto;max-height:32vh;overflow:auto}}
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+</head><body><div id="hdr">EYOMANI STUDIO — Floor 1</div>
+<div id="floors"><button data-f="1">FLOOR 1</button><button data-f="2">FLOOR 2</button><button data-f="all">BUILDING</button></div>
+<div id="log" class="m"><h3 onclick="this.parentNode.classList.toggle('c')">ACTIVITY LOG ▾</h3><ul id="logl"></ul></div>
+<script type="module" src="main.js?v=13"></script></body></html>

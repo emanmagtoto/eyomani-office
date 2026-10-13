@@ -1,0 +1,21 @@
+{
+  "project": {
+    "name": "Current project",
+    "completion_pct": 20,
+    "credits_used": 118.5,
+    "cost_usd": 0,
+    "revenue_usd": 0
+  },
+  "photographer": {
+    "images_generated": 14,
+    "credits_used": 101.5
+  },
+  "videographer": {
+    "seconds_generated": 119,
+    "generations": 11,
+    "credits_used": 417,
+    "seconds": 15,
+    "credits": 45
+  },
+  "updated": "2026-10-13T06:56:56+00:00"
+}
