@@ -34,7 +34,7 @@
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project",
-      "updated": "2026-10-13T06:57:56+00:00"
+      "updated": "2026-10-13T09:27:25+00:00"
     },
     {
       "name": "Editor",
@@ -86,12 +86,6 @@
     }
   ],
   "log": [
-    {
-      "time": "2026-10-12T12:44:41+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
     {
       "time": "2026-10-12T12:55:47+00:00",
       "name": "Photographer",
@@ -385,6 +379,12 @@
       "name": "Blender",
       "status": "idle",
       "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-13T09:27:25+00:00",
+      "name": "Videographer",
+      "status": "working",
+      "task": "Working on a project"
     }
   ]
 }
