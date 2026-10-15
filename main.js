@@ -502,7 +502,7 @@ function neonSign(text,core,glow){const fs=120,F=`bold ${fs}px "Trebuchet MS","D
  G.globalAlpha=1;G.save();G.shadowColor=glow;G.shadowBlur=4;G.fillStyle=core;G.fillText(text,cx,cy);G.restore();
  
  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;
- const SH=Number(Q.get('sh')??7.5), mesh=new THREE.Mesh(new THREE.PlaneGeometry(SH*c.width/c.height,SH),new THREE.MeshBasicMaterial({map:t,toneMapped:false,transparent:true,depthWrite:false,depthTest:false,side:THREE.DoubleSide}));mesh.renderOrder=10;mesh.userData.h=SH;return mesh;}
+ const SH=Number(Q.get('sh')??7.5), mesh=new THREE.Mesh(new THREE.PlaneGeometry(SH*c.width/c.height,SH),new THREE.MeshBasicMaterial({map:t,toneMapped:false,transparent:true,depthWrite:false,depthTest:true,side:THREE.DoubleSide}));mesh.renderOrder=10;mesh.userData.h=SH;return mesh;}
 const FLOAT=Number(Q.get('float')??2.5);
 {const sg=neonSign('Media Room','#f070c0','#d02090');sg.position.set((X0+X1)/2+Number(Q.get('mx')??17),Number(Q.get('mroof')??(H+22))+FLOAT+sg.userData.h/2,Number(Q.get('mz')??Z1));s.add(sg);}
 {const sg=neonSign('Futures Trading Room','#60d8ec','#1aa8c8');
@@ -523,8 +523,10 @@ for(let x=SX0+8;x<SX1;x+=12){const tr=new THREE.Mesh(new THREE.SphereGeometry(1.
 if(VIEW==='board'){const f0=new THREE.Vector3(46,34,64).normalize(),r0=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),f0).normalize(),u0=new THREE.Vector3().crossVectors(f0,r0);const tg=spr.position.clone().addScaledVector(u0,24).addScaledVector(r0,1),f=Number(Q.get('f')??15),a=innerWidth/innerHeight;cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).addScaledVector(f0,80);cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
 if(VIEW==='media'){const tg=new THREE.Vector3((MZ_X1+X1)/2,14.5,Z0),f=Number(Q.get('f')??22),a=innerWidth/innerHeight;cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(0,2,60));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
 if(VIEW==='block'||VIEW==='trading'){const tg=VIEW==='block'?new THREE.Vector3((X0+SPX+24)/2,10,8):new THREE.Vector3(SPX-22,SPH*.4,SPZ), f=VIEW==='block'?Number(Q.get('f')??52):Number(Q.get('tf')??SPH*.58), a=innerWidth/innerHeight;
- cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(46,34,64).applyAxisAngle(new THREE.Vector3(0,1,0),Number(Q.get('orbit')??0)*Math.PI/180));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
+ cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(46,34,64));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
 }
+// lock the view angle to the one the trading pixel art was painted for: pan + zoom only, no rotation
+ctl.enableRotate=false; ctl.screenSpacePanning=true; ctl.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.PAN}; ctl.touches={ONE:THREE.TOUCH.PAN,TWO:THREE.TOUCH.DOLLY_PAN}; ctl.update();
 
 const comp=new EffectComposer(r); comp.addPass(new RenderPass(s,cam));
 comp.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),0.6,0.4,0.9)); comp.addPass(new OutputPass());
