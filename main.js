@@ -467,30 +467,33 @@ const ts=await fetch('trading_stats.json?'+Date.now()).then(r=>r.json()).catch((
 const nv=v=>(typeof v==='number'&&isFinite(v))?v:null, money=v=>v==null?'--':(v<0?'-$':'$')+Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:2}), pct=v=>v==null?'--':(Math.abs(v)<=1?v*100:v).toFixed(1)+'%', cnt=v=>v==null?'--':v.toLocaleString('en-US');
 const streak=v=>v==null?'--':(v>0?'W'+v:v<0?'L'+(-v):'0');
 const ROWS=[['MONTHLY P&L',money(nv(ts.monthly_pnl))],['WEEKLY P&L',money(nv(ts.weekly_pnl))],['DAILY P&L',money(nv(ts.daily_pnl))],['TOTAL TRADES',cnt(nv(ts.total_trades))],['WINNERS',cnt(nv(ts.winners))],['LOSERS',cnt(nv(ts.losers))],['WIN RATE',pct(nv(ts.win_rate))],['CURRENT STREAK',streak(nv(ts.current_streak))],['OPEN POSITIONS',cnt(nv(ts.open_positions))]];
-const cv=document.createElement('canvas');cv.width=img.width;cv.height=img.height;const g=cv.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(img,0,0);
-// board inner area (crop coords): left x~628 top y~226, right x~935 ; wall slope ~0.47
+// hi-res pipeline: pixel art upscaled SCx with nearest-neighbour (crisp pixels), board text drawn as vector at SCx
+const SC=3, cv3=document.createElement('canvas');cv3.width=img.width*SC;cv3.height=img.height*SC;const g=cv3.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(img,0,0,cv3.width,cv3.height);
 const BX=628, BY=230, BW=305, SL=0.47, BH=490;
-g.save(); g.setTransform(1,SL,0,1,BX,BY-BX*0); g.translate(0,0);
-g.textAlign='center'; g.textBaseline='middle'; g.imageSmoothingEnabled=false;
-const F='"Courier New",monospace';
-g.shadowColor='#33e8ff'; g.shadowBlur=6; g.fillStyle='#bff6ff'; g.font=`bold 32px ${F}`; g.fillText('TRADING DESK',BW/2,18);
+g.save(); g.scale(SC,SC); g.beginPath();g.moveTo(BX-6,BY-8);g.lineTo(BX+BW+6,BY-8+(BW+12)*SL);g.lineTo(BX+BW+6,BY+BH+(BW+12)*SL);g.lineTo(BX-6,BY+BH);g.clip();
+g.transform(1,SL,0,1,BX,BY); g.textBaseline='middle'; g.lineJoin='round';
+const F='Arial,Helvetica,sans-serif';
+const TX=(t,x,y,px,fill,glow,al,mw)=>{g.textAlign=al;g.font=`bold ${px}px ${F}`;g.shadowColor='rgba(0,0,0,0)';g.strokeStyle='rgba(6,4,24,.9)';g.lineWidth=px*.16;g.strokeText(t,x,y,mw);g.shadowColor=glow;g.shadowBlur=2;g.fillStyle=fill;g.fillText(t,x,y,mw);g.shadowBlur=0;};
+TX('TRADING DESK',BW/2,20,30,'#c9fbff','#33e8ff','center',BW-20);
+g.fillStyle='rgba(51,232,255,.55)';g.fillRect(14,40,BW-28,2);
 const rh=(BH-50)/ROWS.length;
-ROWS.forEach(([k,v],i)=>{const y=50+i*rh, my=y+rh*.5;
- g.textAlign='left'; g.shadowColor='#b05cff'; g.shadowBlur=4; g.fillStyle='#d9b8ff'; g.font=`bold 23px ${F}`; g.fillText(k,12,my,BW*.62);
- g.textAlign='right'; g.shadowColor='#33e8ff'; g.shadowBlur=7; g.fillStyle='#e8fdff'; g.font=`bold 40px ${F}`; g.fillText(v,BW-10,my,BW*.36);
- g.shadowBlur=0; g.fillStyle='rgba(176,92,255,.45)'; if(i<ROWS.length-1) g.fillRect(10,y+rh-1,BW-20,2);});
-g.textAlign='center';
+ROWS.forEach(([k,v],i)=>{const y=48+i*rh, my=y+rh*.5;
+ TX(k,10,my,22,'#ead6ff','#b05cff','left',BW*.6);
+ TX(v,BW-10,my,v==='--'?36:30,'#ffffff','#33e8ff','right',BW*.36);
+ if(i<ROWS.length-1){g.fillStyle='rgba(176,92,255,.5)';g.fillRect(10,y+rh-1,BW-20,1.5);}});
 g.restore();
-// pixelate the overlay text slightly so it matches the art: redraw at half-res and back up
-const t2=document.createElement('canvas');t2.width=cv.width/2;t2.height=cv.height/2;const g2=t2.getContext('2d');g2.imageSmoothingEnabled=true;g2.drawImage(cv,0,0,t2.width,t2.height);
-const cv3=document.createElement('canvas');cv3.width=cv.width;cv3.height=cv.height;const g3=cv3.getContext('2d');g3.imageSmoothingEnabled=false;g3.drawImage(img,0,0);
-g3.save();g3.beginPath();g3.moveTo(BX-8,BY-10);g3.lineTo(BX+BW+8,BY-10+(BW+16)*SL);g3.lineTo(BX+BW+8,img.height);g3.lineTo(BX-8,img.height);g3.clip();g3.drawImage(t2,0,0,cv.width,cv.height);g3.restore();
 const OFF=Math.ceil(KS*cv3.width)+1, cv4=document.createElement('canvas');cv4.width=cv3.width;cv4.height=cv3.height+OFF;const g4=cv4.getContext('2d');g4.imageSmoothingEnabled=false;g4.setTransform(1,-KS,0,1,0,OFF);g4.drawImage(cv3,0,0);
-const cornerY=CY-KS*CX+OFF;
-SPH=cv4.height*UPP; SPX=Number(Q.get('tx')??(X1+GAP+CX*UPP/0.812));
-const tex=new THREE.CanvasTexture(cv4); tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=THREE.NearestFilter; tex.generateMipmaps=false;
-const spr=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,toneMapped:false,transparent:true,alphaTest:.5}));
-spr.center.set(CX/cv4.width,(cv4.height-cornerY)/cv4.height); spr.scale.set(cv4.width*UPP,SPH,1); spr.position.set(SPX,0,SPZ); s.add(spr);
+const cornerY=(CY-KS*CX)*SC+OFF;
+SPH=cv4.height*UPP/SC; SPX=Number(Q.get('tx')??(X1+GAP+CX*UPP/0.812));
+const tex=new THREE.CanvasTexture(cv4); tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=THREE.NearestFilter; tex.generateMipmaps=false; tex.anisotropy=r.capabilities.getMaxAnisotropy();
+// world-anchored card (NOT a camera-facing sprite): fixed orientation = the block-view iso direction, so it never slides vs the street
+const SCX=CX*SC/cv4.width, SCY=(cv4.height-cornerY)/cv4.height, SW=cv4.width*UPP/SC;
+const cg=new THREE.PlaneGeometry(SW,SPH); cg.translate((0.5-SCX)*SW,(0.5-SCY)*SPH,0);
+const spr=new THREE.Mesh(cg,new THREE.MeshBasicMaterial({map:tex,toneMapped:false,transparent:true,alphaTest:.5,side:THREE.DoubleSide}));
+spr.center={x:SCX,y:SCY};
+{const f=new THREE.Vector3(46,34,64).normalize(), rr=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),f).normalize(), uu=new THREE.Vector3().crossVectors(f,rr);
+ spr.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(rr,uu,f));}
+spr.position.set(SPX,0,SPZ); s.add(spr);
 
 // ===== floating neon signs (3D planes parallel to the street, no border)
 function neonSign(text,core,glow){const fs=120,F=`bold ${fs}px "Trebuchet MS","DejaVu Sans",sans-serif`,m=document.createElement('canvas').getContext('2d');m.font=F;const tw=m.measureText(text).width;
@@ -517,9 +520,10 @@ box(SX1-SX0,.3,4,M(0x8a8790,{roughness:.9}),(SX0+SX1)/2,0,rd1+2);
 box(SX1-X1,.3,D+3,M(0x7e7b84,{roughness:.9}),(X1+SX1)/2,0,0);
 for(let x=SX0+4;x<SX1;x+=12){box(.15,5,.15,M(0x2a2a30,{metalness:.6}),x,2.5,sw1-.6);const lb=new THREE.Mesh(new THREE.SphereGeometry(.3,10,8),new THREE.MeshBasicMaterial({color:0xfff0c8}));lb.position.set(x,5.1,sw1-.6);s.add(lb);const pl=new THREE.PointLight(0xffe0b0,6,10,1.8);pl.position.set(x,4.8,sw1+.5);s.add(pl);}
 for(let x=SX0+8;x<SX1;x+=12){const tr=new THREE.Mesh(new THREE.SphereGeometry(1.3,10,8),M(0x2f5a34));tr.position.set(x,3.4,sw0+2.2);tr.castShadow=true;s.add(tr);box(.25,2.4,.25,M(0x4a3628),x,1.2,sw0+2.2);}
+if(VIEW==='board'){const f0=new THREE.Vector3(46,34,64).normalize(),r0=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),f0).normalize(),u0=new THREE.Vector3().crossVectors(f0,r0);const tg=spr.position.clone().addScaledVector(u0,24).addScaledVector(r0,1),f=Number(Q.get('f')??15),a=innerWidth/innerHeight;cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).addScaledVector(f0,80);cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
 if(VIEW==='media'){const tg=new THREE.Vector3((MZ_X1+X1)/2,14.5,Z0),f=Number(Q.get('f')??22),a=innerWidth/innerHeight;cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(0,2,60));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
-if(VIEW==='block'||VIEW==='trading'){const tg=VIEW==='block'?new THREE.Vector3((X0+SPX+24)/2,10,8):new THREE.Vector3(SPX-22,SPH*.4,SPZ), f=VIEW==='block'?Number(Q.get('f')??52):SPH*.58, a=innerWidth/innerHeight;
- cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(46,34,64));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
+if(VIEW==='block'||VIEW==='trading'){const tg=VIEW==='block'?new THREE.Vector3((X0+SPX+24)/2,10,8):new THREE.Vector3(SPX-22,SPH*.4,SPZ), f=VIEW==='block'?Number(Q.get('f')??52):Number(Q.get('tf')??SPH*.58), a=innerWidth/innerHeight;
+ cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(46,34,64).applyAxisAngle(new THREE.Vector3(0,1,0),Number(Q.get('orbit')??0)*Math.PI/180));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
 }
 
 const comp=new EffectComposer(r); comp.addPass(new RenderPass(s,cam));
