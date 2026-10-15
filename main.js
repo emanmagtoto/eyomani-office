@@ -265,33 +265,36 @@ function zsign(t,x,z){const tx=canvasTex(512,128,(g,w,h)=>{g.fillStyle='#14110d'
  plane(3.2,.8,tx,x,2.6,z);box(.08,2.2,.08,gold,x,1.1,z-.05);box(.9,.06,.9,gold,x,.03,z-.05);}
 zsign('GAMES',-24,2.4); zsign('LOUNGE',-2,2.8); zsign('COFFEE',24,2.8);
 // ===== hologram stats board (public-safe) =====
-const st=await fetch('stats.json?'+Date.now()).then(r=>r.json()).catch(()=>({}));
+const st=await fetch('studio_stats.json?'+Date.now()).then(r=>r.json()).catch(()=>({}));
 const num=v=>(typeof v==='number'&&isFinite(v))?v:null;
-const pv={YouTube:num(st.views?.youtube??st.youtube?.views),Instagram:num(st.views?.instagram??st.instagram?.views),X:num(st.views?.x??st.x?.views)};
-const have=Object.values(pv).filter(v=>v!=null), total=have.length?have.reduce((a,b)=>a+b,0):null;
-const top=st.top_clip||null;
-const prod=num(st.projects_in_production)??(Array.isArray(st.projects)?st.projects.filter(p=>(p.completion_pct??0)<100).length:(st.project&&num(st.project.completion_pct)!=null&&st.project.completion_pct<100?1:null));
-const fmt=n=>n==null?'N/A':n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e4?(n/1e3).toFixed(1)+'K':n.toLocaleString('en-US');
+const NOWM=new Date().toISOString().slice(0,7), FRESH=st.month===NOWM; // monthly figures only count for the current month
+const mv=k=>FRESH?num(st.monthly_views?.[k]):null, fg=k=>FRESH?num(st.follower_growth?.[k]):null, mo=v=>FRESH?num(v):null;
+const fmt=n=>n==null?'--':n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e4?(n/1e3).toFixed(1)+'K':n.toLocaleString('en-US');
+const gfmt=n=>n==null?'--':(n>0?'+':'')+fmt(n);
+const usd=n=>n==null?'--':'$'+(n>=1e4?(n/1e3).toFixed(1)+'K':n.toLocaleString('en-US',{maximumFractionDigits:2}));
+const MON=new Date(NOWM+'-01T00:00:00Z').toLocaleString('en-US',{month:'long',timeZone:'UTC'}).toUpperCase();
 const bx0=MZ_X1+.3, bx1=X1-.3, by0=7.2, by1=H-.5, bw=bx1-bx0, bh=by1-by0, PX=100;
 const boardT=canvasTex(Math.round(bw*PX),Math.round(bh*PX),(g,w,h)=>{
  g.fillStyle='rgba(70,20,120,0.66)';g.fillRect(0,0,w,h);
- // decor: grid, glow bands, watermark
  g.strokeStyle='rgba(220,170,255,.12)';g.lineWidth=2;for(let x=0;x<w;x+=100){g.beginPath();g.moveTo(x,0);g.lineTo(x,h);g.stroke();}for(let y=0;y<h;y+=100){g.beginPath();g.moveTo(0,y);g.lineTo(w,y);g.stroke();}
- for(const y of [h*.18,h*.86]){const gb=g.createLinearGradient(0,y-40,0,y+40);gb.addColorStop(0,'rgba(200,140,255,0)');gb.addColorStop(.5,'rgba(200,140,255,.22)');gb.addColorStop(1,'rgba(200,140,255,0)');g.fillStyle=gb;g.fillRect(0,y-40,w,80);}
+ for(const y of [h*.13,h*.9]){const gb=g.createLinearGradient(0,y-40,0,y+40);gb.addColorStop(0,'rgba(200,140,255,0)');gb.addColorStop(.5,'rgba(200,140,255,.22)');gb.addColorStop(1,'rgba(200,140,255,0)');g.fillStyle=gb;g.fillRect(0,y-40,w,80);}
  g.save();g.fillStyle='rgba(240,220,255,.07)';g.font='bold 900px Helvetica,Arial';g.textAlign='center';g.textBaseline='middle';g.fillText('EYOMANI',w/2,h/2+40);g.restore();
  g.strokeStyle='rgba(220,170,255,.95)';g.lineWidth=8;g.strokeRect(14,14,w-28,h-28);
- g.shadowColor='#c890ff';g.shadowBlur=8;const C='#fbf6ff',Cs='#e4ccff';
- const txt=(t,x,y,sz,c=C,b=true)=>{g.textAlign='center';g.fillStyle=c;const f=z=>g.font=`${b?'bold ':''}${z}px Helvetica,Arial`;f(sz);while(g.measureText(t).width>cwi(Math.min(2,Math.max(0,ED.findIndex(e=>e>x)-1)))-240&&sz>30){sz-=6;f(sz);}g.fillText(t,x,y);};
- const wx=x=>(x-bx0)*PX, ED=[0,1,2,3].map(i=>w*i/3), cx=i=>(ED[i]+ED[i+1])/2, cwi=i=>ED[i+1]-ED[i];
- g.strokeStyle='rgba(220,170,255,.55)';g.lineWidth=4;[ED[1],ED[2]].forEach(x=>{g.beginPath();g.moveTo(x,110);g.lineTo(x,h-110);g.stroke();});
- txt('TOTAL VIEWS',cx(0),h*.2,150,Cs); txt(fmt(total),cx(0),h*.5,520);
- Object.entries(pv).forEach(([k,v],i)=>txt(`${k}: ${fmt(v)}`,cx(0),h*.66+i*h*.085,105,Cs,false));
- if(total==null) txt('not tracked yet',cx(0),h*.93,75,Cs,false);
- txt('TOP CLIP',cx(1),h*.2,150,Cs);
- const tt=top?.title??'N/A', tp=top?.platform??'N/A';
- let fs=520; g.font=`bold ${fs}px Helvetica`; while(g.measureText(tt).width>cwi(1)-200&&fs>60){fs-=10;g.font=`bold ${fs}px Helvetica`;}
- txt(tt,cx(1),h*.5,fs); txt('Best on: '+tp,cx(1),h*.64,110,Cs,false);
- txt('PROJECTS IN PRODUCTION',cx(2),h*.2,150,Cs); txt(prod==null?'N/A':String(prod),cx(2),h*.5,520);
+ g.shadowColor='#c890ff';g.shadowBlur=8;g.textBaseline='middle';const C='#fbf6ff',Cs='#e4ccff';
+ const T=(t,x,y,sz,c=C,al='center',mw=1e9,b=true)=>{g.textAlign=al;g.fillStyle=c;g.font=`${b?'bold ':''}${sz}px Helvetica,Arial`;g.fillText(t,x,y,mw);};
+ const ED=[0,.34,.66,1].map(f=>w*f);
+ g.strokeStyle='rgba(220,170,255,.55)';g.lineWidth=4;[ED[1],ED[2]].forEach(x=>{g.beginPath();g.moveTo(x,90);g.lineTo(x,h-90);g.stroke();});
+ const P=[['YouTube','youtube'],['Instagram','instagram'],['X','x']];
+ const col=(i,title,sub,rows)=>{const a=ED[i]+70,b=ED[i+1]-70,cw=b-a;T(title,(a+b)/2,h*.13,140,Cs,'center',cw);T(sub,(a+b)/2,h*.24,72,Cs,'center',cw,false);
+  rows.forEach(([k,v],j)=>{const y=h*(.42+j*.19);T(k,a,y,135,Cs,'left',cw*.5);T(v,b,y,210,C,'right',cw*.48);});};
+ col(0,'MONTHLY VIEWS',`${MON} · resets on the 1st`,P.map(([n,k])=>[n,fmt(mv(k))]));
+ col(1,'FOLLOWER GROWTH',`gained in ${MON}`,P.map(([n,k])=>[n,gfmt(fg(k))]));
+ // right column: 2x2 tiles
+ const a=ED[2]+50,b=ED[3]-50,cw=(b-a)/2;
+ const ds=st.document_sales||{};
+ const tiles=[['WEBSITE TRAFFIC',fmt(mo(st.website_traffic?.monthly_visits)),'visits this month'],['PROJECTS IN PRODUCTION',fmt(num(st.projects_in_production)),'active now'],['POSTS CREATED',fmt(mo(st.posts_created)),'this month'],['DOCUMENT SALES',fmt(mo(ds.count)),usd(mo(ds.revenue))+' revenue']];
+ tiles.forEach(([t,v,s],k)=>{const cx=a+cw*(k%2)+cw/2, y0=h*(k<2?.1:.53);T(t,cx,y0+h*.03,86,Cs,'center',cw-30);T(v,cx,y0+h*.2,230,C,'center',cw-40);T(s,cx,y0+h*.33,64,Cs,'center',cw-30,false);});
+ g.beginPath();g.moveTo(a+20,h*.5);g.lineTo(b-20,h*.5);g.moveTo(a+cw,110);g.lineTo(a+cw,h-110);g.stroke();
 });
 plane(bw,bh,boardT,(bx0+bx1)/2,(by0+by1)/2,Z0+.25,0,true);
 const purp=new THREE.MeshBasicMaterial({color:0xc58bff,toneMapped:false});glowX(bx0,bx1,by0,Z0+.28,purp,.08);glowX(bx0,bx1,by1,Z0+.28,purp,.08);glowY(by0,by1,bx0,Z0+.28,purp,.08);glowY(by0,by1,bx1,Z0+.28,purp,.08);
@@ -455,6 +458,70 @@ function stepPeople(){const dt=Math.min(CLK.getDelta(),.1), t=CLK.elapsedTime; c
    x=x0+(x1-x0)*u2; const bt=.62; y=u2<bt?1.66+ .55*Math.sin(Math.PI*u2/bt)*(1-u2/bt*.3)+ (1-u2/bt)*.15 : 1.66+.45*Math.sin(Math.PI*(u2-bt)/(1-bt)); if(u2<bt)y=1.66+(1-u2/bt)*.2+.5*Math.sin(Math.PI*u2/bt);
    const zA=-ppA.userData.hips.position.x, zB=ppB.userData.hips.position.x; B.position.set(x,y,(fromA?zA+(zB-zA)*u2:zB+(zA-zB)*u2)*.8);}
   else B.position.set(.9,1.66,-.3);}}
+// ===== TRADING OFFICE as pixel-art billboard + STREET =====
+{
+const UPP=Number(Q.get('th')??40)/720, GAP=Number(Q.get('gap')??28), KS=0.184, CX=771, CY=978;
+let SPX, SPZ=Number(Q.get('tz')??Z1), SPH;
+const img=await new Promise(res=>{const i=new Image();i.onload=()=>res(i);i.src='trading_building4.png?'+Date.now();});
+const ts=await fetch('trading_stats.json?'+Date.now()).then(r=>r.json()).catch(()=>({}));
+const nv=v=>(typeof v==='number'&&isFinite(v))?v:null, money=v=>v==null?'--':(v<0?'-$':'$')+Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:2}), pct=v=>v==null?'--':(Math.abs(v)<=1?v*100:v).toFixed(1)+'%', cnt=v=>v==null?'--':v.toLocaleString('en-US');
+const streak=v=>v==null?'--':(v>0?'W'+v:v<0?'L'+(-v):'0');
+const ROWS=[['MONTHLY P&L',money(nv(ts.monthly_pnl))],['WEEKLY P&L',money(nv(ts.weekly_pnl))],['DAILY P&L',money(nv(ts.daily_pnl))],['TOTAL TRADES',cnt(nv(ts.total_trades))],['WINNERS',cnt(nv(ts.winners))],['LOSERS',cnt(nv(ts.losers))],['WIN RATE',pct(nv(ts.win_rate))],['CURRENT STREAK',streak(nv(ts.current_streak))],['OPEN POSITIONS',cnt(nv(ts.open_positions))]];
+const cv=document.createElement('canvas');cv.width=img.width;cv.height=img.height;const g=cv.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(img,0,0);
+// board inner area (crop coords): left x~628 top y~226, right x~935 ; wall slope ~0.47
+const BX=628, BY=230, BW=305, SL=0.47, BH=490;
+g.save(); g.setTransform(1,SL,0,1,BX,BY-BX*0); g.translate(0,0);
+g.textAlign='center'; g.textBaseline='middle'; g.imageSmoothingEnabled=false;
+const F='"Courier New",monospace';
+g.shadowColor='#33e8ff'; g.shadowBlur=6; g.fillStyle='#bff6ff'; g.font=`bold 32px ${F}`; g.fillText('TRADING DESK',BW/2,18);
+const rh=(BH-50)/ROWS.length;
+ROWS.forEach(([k,v],i)=>{const y=50+i*rh, my=y+rh*.5;
+ g.textAlign='left'; g.shadowColor='#b05cff'; g.shadowBlur=4; g.fillStyle='#d9b8ff'; g.font=`bold 23px ${F}`; g.fillText(k,12,my,BW*.62);
+ g.textAlign='right'; g.shadowColor='#33e8ff'; g.shadowBlur=7; g.fillStyle='#e8fdff'; g.font=`bold 40px ${F}`; g.fillText(v,BW-10,my,BW*.36);
+ g.shadowBlur=0; g.fillStyle='rgba(176,92,255,.45)'; if(i<ROWS.length-1) g.fillRect(10,y+rh-1,BW-20,2);});
+g.textAlign='center';
+g.restore();
+// pixelate the overlay text slightly so it matches the art: redraw at half-res and back up
+const t2=document.createElement('canvas');t2.width=cv.width/2;t2.height=cv.height/2;const g2=t2.getContext('2d');g2.imageSmoothingEnabled=true;g2.drawImage(cv,0,0,t2.width,t2.height);
+const cv3=document.createElement('canvas');cv3.width=cv.width;cv3.height=cv.height;const g3=cv3.getContext('2d');g3.imageSmoothingEnabled=false;g3.drawImage(img,0,0);
+g3.save();g3.beginPath();g3.moveTo(BX-8,BY-10);g3.lineTo(BX+BW+8,BY-10+(BW+16)*SL);g3.lineTo(BX+BW+8,img.height);g3.lineTo(BX-8,img.height);g3.clip();g3.drawImage(t2,0,0,cv.width,cv.height);g3.restore();
+const OFF=Math.ceil(KS*cv3.width)+1, cv4=document.createElement('canvas');cv4.width=cv3.width;cv4.height=cv3.height+OFF;const g4=cv4.getContext('2d');g4.imageSmoothingEnabled=false;g4.setTransform(1,-KS,0,1,0,OFF);g4.drawImage(cv3,0,0);
+const cornerY=CY-KS*CX+OFF;
+SPH=cv4.height*UPP; SPX=Number(Q.get('tx')??(X1+GAP+CX*UPP/0.812));
+const tex=new THREE.CanvasTexture(cv4); tex.colorSpace=THREE.SRGBColorSpace; tex.magFilter=THREE.NearestFilter; tex.minFilter=THREE.NearestFilter; tex.generateMipmaps=false;
+const spr=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,toneMapped:false,transparent:true,alphaTest:.5}));
+spr.center.set(CX/cv4.width,(cv4.height-cornerY)/cv4.height); spr.scale.set(cv4.width*UPP,SPH,1); spr.position.set(SPX,0,SPZ); s.add(spr);
+
+// ===== floating neon signs (3D planes parallel to the street, no border)
+function neonSign(text,core,glow){const fs=120,F=`bold ${fs}px "Trebuchet MS","DejaVu Sans",sans-serif`,m=document.createElement('canvas').getContext('2d');m.font=F;const tw=m.measureText(text).width;
+ const c=document.createElement('canvas');c.width=Math.ceil(tw+fs*0.8);c.height=Math.ceil(fs*1.6);const G=c.getContext('2d');G.font=F;G.textAlign='center';G.textBaseline='middle';G.lineJoin='round';const cx=c.width/2,cy=c.height/2;
+ G.globalAlpha=.55;for(const [b,w,col] of [[24,12,glow],[12,7,glow]]){G.save();G.shadowColor=glow;G.shadowBlur=b;G.strokeStyle=col;G.lineWidth=w;G.strokeText(text,cx,cy);G.restore();}
+ G.globalAlpha=1;G.save();G.shadowColor=glow;G.shadowBlur=4;G.fillStyle=core;G.fillText(text,cx,cy);G.restore();
+ 
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;
+ const SH=Number(Q.get('sh')??7.5), mesh=new THREE.Mesh(new THREE.PlaneGeometry(SH*c.width/c.height,SH),new THREE.MeshBasicMaterial({map:t,toneMapped:false,transparent:true,depthWrite:false,depthTest:false,side:THREE.DoubleSide}));mesh.renderOrder=10;mesh.userData.h=SH;return mesh;}
+const FLOAT=Number(Q.get('float')??2.5);
+{const sg=neonSign('Media Room','#f070c0','#d02090');sg.position.set((X0+X1)/2+Number(Q.get('mx')??17),Number(Q.get('mroof')??(H+22))+FLOAT+sg.userData.h/2,Number(Q.get('mz')??Z1));s.add(sg);}
+{const sg=neonSign('Futures Trading Room','#60d8ec','#1aa8c8');
+ // trading roof: billboard top projects to screen height TOP above anchor; find world y at the footprint centre that lands just above it
+ const x0=X1+GAP, cxw=(x0+SPX)/2-Number(Q.get('tshift')??5), czw=SPZ-9, TOP=(1-spr.center.y)*SPH, dx=cxw-SPX, dz=czw-SPZ;
+ const roofY=(TOP-Number(Q.get('tdrop')??11) + 0.2312*dx + 0.3216*dz)/0.9182; // screen-up of world point = .918y -.231dx -.322dz
+ sg.position.set(cxw,roofY+FLOAT+sg.userData.h/2,czw);s.add(sg);}
+// ===== STREET + SIDEWALK linking both buildings
+const SX0=-48, SX1=SPX+36, sw0=Z1+1.4, sw1=sw0+5, rd1=sw1+12;
+box(SX1-SX0,.3,sw1-sw0,M(0x8a8790,{roughness:.9}),(SX0+SX1)/2,0,(sw0+sw1)/2);
+box(SX1-SX0,.35,.3,M(0xb0adb6),(SX0+SX1)/2,.02,sw1);
+box(SX1-SX0,.05,rd1-sw1,M(0x222228,{roughness:.8}),(SX0+SX1)/2,-.12,(sw1+rd1)/2);
+for(let x=SX0+2;x<SX1-2;x+=6)box(3,.03,.25,M(0xf0e6a0),x,-.08,(sw1+rd1)/2,false);
+box(SX1-SX0,.3,4,M(0x8a8790,{roughness:.9}),(SX0+SX1)/2,0,rd1+2);
+box(SX1-X1,.3,D+3,M(0x7e7b84,{roughness:.9}),(X1+SX1)/2,0,0);
+for(let x=SX0+4;x<SX1;x+=12){box(.15,5,.15,M(0x2a2a30,{metalness:.6}),x,2.5,sw1-.6);const lb=new THREE.Mesh(new THREE.SphereGeometry(.3,10,8),new THREE.MeshBasicMaterial({color:0xfff0c8}));lb.position.set(x,5.1,sw1-.6);s.add(lb);const pl=new THREE.PointLight(0xffe0b0,6,10,1.8);pl.position.set(x,4.8,sw1+.5);s.add(pl);}
+for(let x=SX0+8;x<SX1;x+=12){const tr=new THREE.Mesh(new THREE.SphereGeometry(1.3,10,8),M(0x2f5a34));tr.position.set(x,3.4,sw0+2.2);tr.castShadow=true;s.add(tr);box(.25,2.4,.25,M(0x4a3628),x,1.2,sw0+2.2);}
+if(VIEW==='media'){const tg=new THREE.Vector3((MZ_X1+X1)/2,14.5,Z0),f=Number(Q.get('f')??22),a=innerWidth/innerHeight;cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(0,2,60));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
+if(VIEW==='block'||VIEW==='trading'){const tg=VIEW==='block'?new THREE.Vector3((X0+SPX+24)/2,10,8):new THREE.Vector3(SPX-22,SPH*.4,SPZ), f=VIEW==='block'?Number(Q.get('f')??52):SPH*.58, a=innerWidth/innerHeight;
+ cam.top=f;cam.bottom=-f;cam.left=-f*a;cam.right=f*a;cam.position.copy(tg).add(new THREE.Vector3(46,34,64));cam.updateProjectionMatrix();ctl.target.copy(tg);cam.lookAt(tg);ctl.update();}
+}
+
 const comp=new EffectComposer(r); comp.addPass(new RenderPass(s,cam));
 comp.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),0.6,0.4,0.9)); comp.addPass(new OutputPass());
 addEventListener('resize',()=>comp.setSize(innerWidth,innerHeight));
