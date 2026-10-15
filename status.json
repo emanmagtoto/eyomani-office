@@ -8,9 +8,9 @@
     },
     {
       "name": "Researcher",
-      "status": "idle",
-      "task": "Idle / in the lounge",
-      "updated": "2026-10-15T00:10:21+00:00"
+      "status": "working",
+      "task": "Working on a project",
+      "updated": "2026-10-15T01:25:30+00:00"
     },
     {
       "name": "Media Specialist",
@@ -86,36 +86,6 @@
     }
   ],
   "log": [
-    {
-      "time": "2026-10-13T01:01:00+00:00",
-      "name": "Writer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T01:01:20+00:00",
-      "name": "Writer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T02:01:12+00:00",
-      "name": "Editor",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T02:05:06+00:00",
-      "name": "Editor",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T02:34:22+00:00",
-      "name": "Editor",
-      "status": "working",
-      "task": "Working on a project"
-    },
     {
       "time": "2026-10-13T02:36:57+00:00",
       "name": "Editor",
@@ -385,6 +355,36 @@
       "name": "Media Specialist",
       "status": "idle",
       "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T01:23:49+00:00",
+      "name": "Researcher",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T01:24:18+00:00",
+      "name": "Researcher",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T01:25:02+00:00",
+      "name": "Researcher",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T01:25:15+00:00",
+      "name": "Researcher",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T01:25:30+00:00",
+      "name": "Researcher",
+      "status": "working",
+      "task": "Working on a project"
     }
   ]
 }
