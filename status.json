@@ -4,19 +4,19 @@
       "name": "Supervisor",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-13T14:12:10+00:00"
+      "updated": "2026-10-15T23:06:35+00:00"
     },
     {
       "name": "Researcher",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-15T01:26:18+00:00"
+      "updated": "2026-10-15T10:55:09+00:00"
     },
     {
       "name": "Media Specialist",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-15T01:18:12+00:00"
+      "updated": "2026-10-15T18:16:41+00:00"
     },
     {
       "name": "Writer",
@@ -32,9 +32,9 @@
     },
     {
       "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project",
-      "updated": "2026-10-15T01:35:49+00:00"
+      "status": "idle",
+      "task": "Idle / in the lounge",
+      "updated": "2026-10-16T10:19:43+00:00"
     },
     {
       "name": "Editor",
@@ -46,7 +46,7 @@
       "name": "Finance",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-13T10:06:03+00:00"
+      "updated": "2026-10-16T09:58:18+00:00"
     },
     {
       "name": "Personal Writer",
@@ -58,13 +58,13 @@
       "name": "Personal Blender 1",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-13T00:25:57+00:00"
+      "updated": "2026-10-15T13:05:55+00:00"
     },
     {
       "name": "Personal Blender 2",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-13T00:25:57+00:00"
+      "updated": "2026-10-15T13:02:59+00:00"
     },
     {
       "name": "Personal Photographer",
@@ -82,309 +82,321 @@
       "name": "Blender",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-13T07:10:29+00:00"
+      "updated": "2026-10-15T11:15:15+00:00"
+    },
+    {
+      "name": "Personal Editor/Sound Designer",
+      "status": "idle",
+      "task": "Idle / in the lounge",
+      "updated": "2026-10-15T18:16:41+00:00"
+    },
+    {
+      "name": "Prompt Stater",
+      "status": "idle",
+      "task": "Idle / in the lounge",
+      "updated": "2026-10-16T02:16:14+00:00"
     }
   ],
   "log": [
     {
-      "time": "2026-10-13T02:43:53+00:00",
-      "name": "Editor",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T02:45:50+00:00",
-      "name": "Editor",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T04:13:56+00:00",
+      "time": "2026-10-15T02:39:42+00:00",
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
     },
     {
-      "time": "2026-10-13T04:27:47+00:00",
+      "time": "2026-10-15T02:44:57+00:00",
       "name": "Videographer",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-13T04:41:47+00:00",
+      "time": "2026-10-15T06:25:53+00:00",
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
     },
     {
-      "time": "2026-10-13T05:00:31+00:00",
+      "time": "2026-10-15T06:33:28+00:00",
       "name": "Videographer",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-13T05:01:04+00:00",
+      "time": "2026-10-15T06:35:01+00:00",
+      "name": "Researcher",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T06:40:12+00:00",
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
     },
     {
-      "time": "2026-10-13T05:14:44+00:00",
+      "time": "2026-10-15T06:51:22+00:00",
       "name": "Videographer",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-13T05:15:00+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T05:20:41+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T05:29:52+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T05:45:06+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T05:58:18+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T05:58:41+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T06:57:56+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T07:10:29+00:00",
-      "name": "Blender",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T09:27:25+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T09:42:10+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T10:04:00+00:00",
-      "name": "Finance",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T10:06:03+00:00",
-      "name": "Finance",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-13T14:12:10+00:00",
+      "time": "2026-10-15T07:35:54+00:00",
       "name": "Supervisor",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-13T22:06:47+00:00",
-      "name": "Researcher",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-13T22:07:18+00:00",
-      "name": "Researcher",
+      "time": "2026-10-15T07:35:54+00:00",
+      "name": "Videographer",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-14T00:00:49+00:00",
-      "name": "Media Specialist",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-14T00:00:49+00:00",
+      "time": "2026-10-15T07:35:54+00:00",
       "name": "Media Specialist",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-14T00:00:59+00:00",
+      "time": "2026-10-15T09:12:09+00:00",
+      "name": "Videographer",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T09:16:55+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T09:36:36+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T09:37:39+00:00",
+      "name": "Videographer",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T09:49:26+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T10:43:25+00:00",
+      "name": "Videographer",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T10:54:23+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T10:55:09+00:00",
       "name": "Researcher",
       "status": "working",
       "task": "Working on a project"
     },
     {
-      "time": "2026-10-14T00:02:56+00:00",
+      "time": "2026-10-15T10:55:09+00:00",
       "name": "Researcher",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-14T00:08:42+00:00",
-      "name": "Researcher",
+      "time": "2026-10-15T11:05:39+00:00",
+      "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
     },
     {
-      "time": "2026-10-14T00:09:28+00:00",
-      "name": "Researcher",
+      "time": "2026-10-15T11:15:05+00:00",
+      "name": "Blender",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T11:15:15+00:00",
+      "name": "Blender",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-14T01:22:04+00:00",
+      "time": "2026-10-15T11:15:33+00:00",
+      "name": "Personal Blender 1",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T11:16:37+00:00",
+      "name": "Personal Blender 1",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T11:17:06+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T11:18:47+00:00",
+      "name": "Personal Blender 1",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T11:27:45+00:00",
+      "name": "Personal Blender 1",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T11:33:57+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T12:30:11+00:00",
+      "name": "Personal Editor/Sound Designer",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T12:30:50+00:00",
+      "name": "Personal Editor/Sound Designer",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T12:31:32+00:00",
+      "name": "Personal Editor/Sound Designer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T12:58:56+00:00",
+      "name": "Personal Blender 2",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-15T13:02:59+00:00",
+      "name": "Personal Blender 2",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T13:05:55+00:00",
+      "name": "Personal Blender 1",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T18:16:41+00:00",
+      "name": "Supervisor",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-15T18:16:41+00:00",
       "name": "Media Specialist",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-14T01:22:42+00:00",
-      "name": "Media Specialist",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-14T22:08:21+00:00",
-      "name": "Researcher",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-14T22:09:53+00:00",
-      "name": "Researcher",
+      "time": "2026-10-15T18:16:41+00:00",
+      "name": "Personal Editor/Sound Designer",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-14T22:45:12+00:00",
+      "time": "2026-10-15T23:06:35+00:00",
+      "name": "Supervisor",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-16T02:16:14+00:00",
+      "name": "Prompt Stater",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-16T02:16:14+00:00",
+      "name": "Prompt Stater",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-16T07:30:26+00:00",
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
     },
     {
-      "time": "2026-10-14T22:47:41+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-14T23:04:11+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-14T23:11:26+00:00",
+      "time": "2026-10-16T07:35:55+00:00",
       "name": "Videographer",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-15T00:09:36+00:00",
-      "name": "Researcher",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-15T00:10:21+00:00",
-      "name": "Researcher",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-15T00:48:10+00:00",
+      "time": "2026-10-16T07:52:01+00:00",
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
     },
     {
-      "time": "2026-10-15T00:50:02+00:00",
+      "time": "2026-10-16T08:02:38+00:00",
       "name": "Videographer",
       "status": "idle",
       "task": "Idle / in the lounge"
     },
     {
-      "time": "2026-10-15T01:17:28+00:00",
-      "name": "Media Specialist",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-15T01:18:12+00:00",
-      "name": "Media Specialist",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-15T01:23:49+00:00",
-      "name": "Researcher",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-15T01:24:18+00:00",
-      "name": "Researcher",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-15T01:25:02+00:00",
-      "name": "Researcher",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-15T01:25:15+00:00",
-      "name": "Researcher",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-15T01:25:30+00:00",
-      "name": "Researcher",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-15T01:26:18+00:00",
-      "name": "Researcher",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-15T01:35:49+00:00",
+      "time": "2026-10-16T09:41:15+00:00",
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-16T09:51:30+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-16T09:56:20+00:00",
+      "name": "Finance",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-16T09:58:18+00:00",
+      "name": "Finance",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-16T10:15:18+00:00",
+      "name": "Videographer",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-16T10:19:43+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
     }
   ]
 }

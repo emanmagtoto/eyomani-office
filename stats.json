@@ -2,7 +2,7 @@
   "project": {
     "name": "Current project",
     "completion_pct": 20,
-    "credits_used": 118.5,
+    "credits_used": 2348.5,
     "cost_usd": 0,
     "revenue_usd": 0
   },
@@ -17,5 +17,5 @@
     "seconds": 30,
     "credits": 225
   },
-  "updated": "2026-10-13T09:42:10+00:00"
+  "updated": "2026-10-16T09:58:18+00:00"
 }
