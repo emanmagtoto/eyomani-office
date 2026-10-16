@@ -32,9 +32,9 @@
     },
     {
       "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project",
-      "updated": "2026-10-16T18:20:50+00:00"
+      "status": "idle",
+      "task": "Idle / in the lounge",
+      "updated": "2026-10-16T18:30:26+00:00"
     },
     {
       "name": "Editor",
@@ -92,30 +92,12 @@
     },
     {
       "name": "Prompt Stater",
-      "status": "idle",
-      "task": "Idle / in the lounge",
-      "updated": "2026-10-16T02:16:14+00:00"
+      "status": "working",
+      "task": "Working on a project",
+      "updated": "2026-10-16T18:30:58+00:00"
     }
   ],
   "log": [
-    {
-      "time": "2026-10-15T02:44:57+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-15T06:25:53+00:00",
-      "name": "Videographer",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-15T06:33:28+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
     {
       "time": "2026-10-15T06:35:01+00:00",
       "name": "Researcher",
@@ -397,6 +379,24 @@
       "name": "Videographer",
       "status": "working",
       "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-16T18:30:26+00:00",
+      "name": "Videographer",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-16T18:30:58+00:00",
+      "name": "Prompt Stater",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-16T18:30:58+00:00",
+      "name": "Prompt Stater",
+      "status": "idle",
+      "task": "Idle / in the lounge"
     }
   ]
 }
