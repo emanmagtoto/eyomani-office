@@ -16,7 +16,7 @@
       "name": "Media Specialist",
       "status": "idle",
       "task": "Idle / in the lounge",
-      "updated": "2026-10-17T07:39:31+00:00"
+      "updated": "2026-10-17T20:33:15+00:00"
     },
     {
       "name": "Writer",
@@ -98,18 +98,6 @@
     }
   ],
   "log": [
-    {
-      "time": "2026-10-15T11:15:05+00:00",
-      "name": "Blender",
-      "status": "working",
-      "task": "Working on a project"
-    },
-    {
-      "time": "2026-10-15T11:15:15+00:00",
-      "name": "Blender",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
     {
       "time": "2026-10-15T11:15:33+00:00",
       "name": "Personal Blender 1",
@@ -395,6 +383,18 @@
     {
       "time": "2026-10-17T10:02:53+00:00",
       "name": "Finance",
+      "status": "idle",
+      "task": "Idle / in the lounge"
+    },
+    {
+      "time": "2026-10-17T20:33:07+00:00",
+      "name": "Media Specialist",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-17T20:33:15+00:00",
+      "name": "Media Specialist",
       "status": "idle",
       "task": "Idle / in the lounge"
     }
