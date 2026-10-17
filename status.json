@@ -92,8 +92,8 @@
     },
     {
       "name": "Prompt Stater",
-      "status": "working",
-      "task": "Working on a project",
+      "status": "idle",
+      "task": "Idle / in the lounge",
       "updated": "2026-10-17T06:12:27+00:00"
     }
   ],
