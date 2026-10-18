@@ -38,9 +38,9 @@
     },
     {
       "name": "Editor",
-      "status": "working",
-      "task": "Working on a project",
-      "updated": "2026-10-18T07:59:58+00:00"
+      "status": "idle",
+      "task": "Idle / in the lounge",
+      "updated": "2026-10-18T08:01:26+00:00"
     },
     {
       "name": "Finance",
@@ -98,18 +98,6 @@
     }
   ],
   "log": [
-    {
-      "time": "2026-10-15T11:16:37+00:00",
-      "name": "Personal Blender 1",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
-    {
-      "time": "2026-10-15T11:17:06+00:00",
-      "name": "Videographer",
-      "status": "idle",
-      "task": "Idle / in the lounge"
-    },
     {
       "time": "2026-10-15T11:18:47+00:00",
       "name": "Personal Blender 1",
@@ -397,6 +385,18 @@
       "name": "Editor",
       "status": "working",
       "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-18T08:01:26+00:00",
+      "name": "Editor",
+      "status": "working",
+      "task": "Working on a project"
+    },
+    {
+      "time": "2026-10-18T08:01:26+00:00",
+      "name": "Editor",
+      "status": "idle",
+      "task": "Idle / in the lounge"
     }
   ]
 }
